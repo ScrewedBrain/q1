@@ -1,0 +1,272 @@
+<%- include('top') %>
+        <!-- page content -->
+        <div class="right_col" role="main">
+          <div class="">
+            <div class="page-title">
+              <div class="title_left">
+                <h3>OdinCRM <small></small></h3>
+              </div>
+              <div class="title_right">
+                <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
+                  <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Поиск...">
+                    <span class="input-group-btn">
+                      <button class="btn btn-default" type="button">Начать!</button>
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="clearfix"></div>
+
+            <div class="row">
+              <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel">
+                  <div class="x_title">
+                    <h2>Заказы</h2>
+                    <ul class="nav navbar-right panel_toolbox">
+                      <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                      </li>
+                      <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                        <ul class="dropdown-menu" role="menu">
+                          <li><a href="#">Настройка 1</a>
+                          </li>
+                          <li><a href="#">Настройка 2</a>
+                          </li>
+                        </ul>
+                      </li>
+                      <li><a class="close-link"><i class="fa fa-close"></i></a>
+                      </li>
+                    </ul>
+                    <div class="clearfix"></div>
+                  </div>
+
+                  <div class="x_content">
+
+
+                    <div class="table-responsive">
+<div>
+<a href="add" type="button" class="btn btn-round btn-success" >Новый заказ</a>
+<div id="good" class="alert alert-success alert-dismissible fade in" role="alert" style="display: none">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span>
+                    </button>
+                    <strong>Изменения внесены!</strong> 
+                  </div></div>
+<style type="text/css">
+  .popsel {
+    display: none;
+  }
+</style>
+    <div id="sellman" class="popsel">
+      <select class="chasell"><% users.forEach(function(user){ %>
+        <option value="<%= user.id %>"><%= user.name %></option>
+      <% }); %>
+      </select>
+    </div>
+    <div id="sestatus" class="popsel">
+    <select class="chasta">
+      <% status.forEach(function(st){ %>
+        <option value="<%= st.id %>"><%= st.name %></option>
+      <% }); %>      
+      </select>
+    </div>
+
+                      <table class="table table-striped jambo_table bulk_action">
+                        <thead>
+                          <tr class="headings">
+                            <th>
+                              <input type="checkbox" id="check-all" class="flat">
+                            </th>
+                            <th class="column-title">ID</th>   <th class="column-title">Ответственный</th>   <th class="column-title">Дата события</th>  <th class="column-title">Источник</th>  <th class="column-title">Точка</th>  <th class="column-title">Статус</th> <th class="column-title">Сумма</th>
+                            <th class="bulk-actions" colspan="7">
+                              <a class="antoo" style="color:#fff; font-weight:500;">Действие с группой <i class="fa fa-chevron-down"></i></a>
+                            </th>
+                          </tr>
+                        </thead>
+
+                        <tbody id="main-orders">
+                          <% for(var i=0; i< data.length; i++) { %>
+                            <% if (i%2) { %>
+                              <tr class="even pointer" id="<%= data[i].id %>">
+                                <td class="a-center">
+                                  <input type="checkbox" class="flat" name="table_records">
+                                </td>
+                                <td class=" "><%= data[i].id %></td>
+                                <td class="manager" data="<%= data[i].user %>" role="">
+                                <% if (users[data[i].user - 1]) { %>
+                                  <%= users[data[i].user - 1].name %>
+                                <% } %>
+                                </td>
+                                <td class=" "><%= moment(data[i].mdate * 1000).format() %></td>
+                                <td class=" "><%= data[i].source  %></td>
+                                <td class=" "><%= data[i].point %></td>
+                                <td class="status" data="<%= data[i].status %>"> 
+                                <%= status[data[i].status - 1].name %>
+                                  
+                                </td>
+                                <td class=" "><%= data[i].summa %></td>
+                              </tr>
+
+                              <tr class="even pointer" id="<%=data[i].id %>"></tr>
+
+                              <% } else { %>
+                                                            <tr class="odd pointer" id="<%= data[i].id %>">
+                                <td class="a-center">
+                                  <input type="checkbox" class="flat" name="table_records">
+                                </td>
+                                <td class=" "><%= data[i].id %></td>
+                                <td class="manager" data="<%= data[i].user %>" role="">
+                                <% if (users[data[i].user - 1]) { %>
+                                  <%= users[data[i].user - 1].name %>
+                                <% } %>
+                                </td>
+                                <td class=" "><%= moment(data[i].mdate * 1000).format() %></td>
+                                <td class=" "><%= data[i].source  %></td>
+                                <td class=" "><%= data[i].point %></td>
+                                <td class="status" data="<%= data[i].status %>"> 
+                                <%= status[data[i].status - 1].name %>
+                                  
+                                </td>
+                                <td class=" "><%= data[i].summa %></td>
+                              </tr>
+
+
+                              <tr class="even pointer" id="ord<%=data[i].id %>"></tr>
+                          <% } %> <% } %>
+
+
+        
+                        </tbody>
+                      </table>
+                    </div>
+							
+						
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+                  <style type="text/css">
+                  #modalOut {
+                    display: none;
+                    position: fixed;
+                    width: 100%;
+                    height: 100%;
+                    z-index: 99;
+                    top: 0;
+                    left: 0;
+                    background: rgba(0,0,0,0.4);
+                    text-align: center;
+                  }
+                    #modal {
+                      border-radius: 5px;
+                      display: inline-block;
+                      max-width:100%;
+                      background: #fff;
+                      margin-top: 50px;
+                      padding: 20px;
+                    }
+                  </style>
+                  <div id="modalOut">
+                    <div id="modal">
+                    <button class="btn btn-round btn-success modal-submit">Применить изменения</button>
+                    <button class="btn btn-round btn-primary close1">Закрыть</button>
+                    </div>
+                
+                  </div>
+        <!-- footer content -->
+        <footer>
+          <div class="pull-right">
+            <a href="#">NordIT</a>
+          </div>
+          <div class="clearfix"></div>
+        </footer>
+        <!-- /footer content -->
+      </div>
+    </div>
+
+    <!-- jQuery -->
+    <script src="vendors/jquery/dist/jquery.min.js"></script>
+    <!-- Bootstrap -->
+    <script src="vendors/bootstrap/dist/js/bootstrap.min.js"></script>
+    <!-- FastClick -->
+    <script src="vendors/fastclick/lib/fastclick.js"></script>
+    <!-- NProgress -->
+    <script src="vendors/nprogress/nprogress.js"></script>
+    <!-- iCheck -->
+    <script src="vendors/iCheck/icheck.min.js"></script>
+
+<!--     <script type="text/javascript" src="js/moment/moment.min.js"></script> -->
+
+    <script src="build/js/custom.min.js"></script>
+
+    <script type="text/javascript">
+    var modal = {};
+
+      $(document).ready(function() {
+
+
+$(".modal-submit").click(function(){
+  console.log(modal);
+  $("#modalOut").hide();
+  if (modal.type == 'chasell'){
+    $.ajax({
+  method: "PUT",
+  url: "orders/" + modal.id,
+  data: { key: 'user', value: modal.value }
+}).done(function(){
+  $("#good").slideDown();
+
+})
+
+  } else {
+    if (modal.type == 'chasta') {
+          $.ajax({
+  method: "PUT",
+  url: "orders/" + modal.id,
+  data: { key: 'status', value: modal.value }
+}).done(function(){
+  $("#good").slideDown();
+})
+    }
+  }
+})
+
+        $('.close1').click(function(){
+          $(this).parent().parent().hide();
+        })
+
+        var myReload = function(){
+          $('select').change(function(){
+            $('#modalOut').show();
+            modal.type = $(this).attr('class');
+            modal.id = $(this).parent().parent().attr('id');
+            modal.value = $(this).val();
+            console.log(modal)
+          })
+        }
+        $('.manager').click(function(e){
+          if (e.target.nodeName == "SELECT" || e.target.nodeName == "OPTION") {
+            return
+          }
+          $(this).html($('#sellman').html());
+          $(this).find('select').val($(this).attr('data'));
+          myReload()
+        });
+        $('.status').click(function(e){
+          if (e.target.nodeName == "SELECT" || e.target.nodeName == "OPTION") {
+            return
+          }
+          $(this).html($('#sestatus').html());
+          $(this).find('select').val($(this).attr('data'));
+          myReload()
+        });
+
+      })
+    </script>
+  </body>
+
+</html>
